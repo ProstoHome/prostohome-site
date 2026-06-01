@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Оформить заказ — prostohome.</title>
+<meta name="description" content="Оформите заказ на стулья и кресла prostohome. Доставка по всей России. Гарантия 12 месяцев.">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── ORDER PAGE ───────────────────────────────────────── */
+.order-wrap { max-width:1100px; margin:0 auto; padding:0 20px; }
+
+.order-grid {
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:28px;
+  align-items:start;
+}
+@media(max-width:900px){ .order-grid{ grid-template-columns:1fr; } }
+
+/* Form card */
+.fc {
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:20px;
+  padding:32px;
+  margin-bottom:20px;
+}
+@media(max-width:600px){ .fc{ padding:20px 16px; } }
+
+.fc-title {
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--gray);
+  margin-bottom:20px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--border);
+}
+
+.frow { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media(max-width:560px){ .frow{ grid-template-columns:1fr; } }
+
+.fg { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+.fg:last-child{ margin-bottom:0; }
+
+.flabel {
+  font-size:13px;
+  font-weight:600;
+  color:var(--text);
+}
+.flabel em { color:var(--primary); font-style:normal; }
+
+.finput, .fselect, .ftextarea {
+  width:100%;
+  padding:13px 16px;
+  border:1.5px solid var(--border);
+  border-radius:12px;
+  font-size:15px;
+  font-family:inherit;
+  color:var(--text);
+  background:#fff;
+  transition:border-color .18s, box-shadow .18s;
+  outline:none;
+  box-sizing:border-box;
+  -webkit-appearance:none;
+}
+.finput:focus,.fselect:focus,.ftextarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(234,168,68,.15);
+}
+.finput.err,.fselect.err{ border-color:#e53e3e; box-shadow:0 0 0 3px rgba(229,62,62,.12); }
+.fhint { font-size:12px; color:var(--gray); line-height:1.5; margin-top:2px; }
+.ftextarea { resize:vertical; min-height:80px; }
+
+/* Qty */
+.qty-wrap { display:flex; align-items:center; border:1.5px solid var(--border); border-radius:12px; overflow:hidden; width:fit-content; }
+.qty-btn { width:48px; height:48px; border:none; background:var(--off); font-size:22px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s; flex-shrink:0; font-family:inherit; }
+.qty-btn:hover{ background:#e8e5e0; }
+.qty-num { width:56px; text-align:center; font-size:17px; font-weight:700; border:none; background:#fff; font-family:inherit; height:48px; padding:0; outline:none; }
+
+/* Color picker */
+.cpick { display:flex; flex-wrap:wrap; gap:8px; }
+.copt {
+  display:flex; align-items:center; gap:8px;
+  padding:8px 14px;
+  border:1.5px solid var(--border);
+  border-radius:999px;
+  cursor:pointer; font-size:13px; font-weight:500;
+  transition:all .15s; background:#fff; user-select:none;
+}
+.copt:hover{ border-color:var(--primary); }
+.copt.on{ border-color:var(--primary); background:#FFF8EF; }
+.cdot { width:14px; height:14px; border-radius:50%; flex-shrink:0; }
+
+/* Delivery methods */
+.dopt {
+  display:flex; align-items:center; gap:14px;
+  padding:14px 16px;
+  border:1.5px solid var(--border);
+  border-radius:12px;
+  cursor:pointer; margin-bottom:10px;
+  transition:all .15s; background:#fff;
+  user-select:none;
+}
+.dopt:last-child{ margin-bottom:0; }
+.dopt:hover{ border-color:var(--primary); }
+.dopt.on{ border-color:var(--primary); background:#FFF8EF; }
+.dopt-radio { width:18px; height:18px; border-radius:50%; border:2px solid var(--border); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all .15s; }
+.dopt.on .dopt-radio { border-color:var(--primary); background:var(--primary); }
+.dopt.on .dopt-radio::after { content:''; width:6px; height:6px; border-radius:50%; background:#fff; }
+.dopt-body { flex:1; }
+.dopt-title { font-size:14px; font-weight:700; margin-bottom:2px; }
+.dopt-desc { font-size:12px; color:var(--gray); }
+.dopt-price { font-size:13px; font-weight:700; color:#16a34a; white-space:nowrap; }
+
+/* Submit btn */
+.submit-btn {
+  width:100%; height:60px; font-size:17px; font-weight:800;
+  background:var(--primary); color:#fff;
+  border:none; border-radius:14px; cursor:pointer;
+  font-family:inherit; letter-spacing:-.2px;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  transition:background .18s, transform .1s;
+}
+.submit-btn:hover{ background:#d4930a; }
+.submit-btn:active{ transform:scale(.98); }
+
+/* Summary card */
+.scard {
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:20px;
+  padding:24px;
+  position:sticky;
+  top:88px;
+}
+
+.scard-img {
+  width:100%; aspect-ratio:4/3;
+  border-radius:14px; overflow:hidden;
+  background:var(--off); margin-bottom:18px;
+  display:flex; align-items:center; justify-content:center;
+  flex-direction:column; gap:8px;
+}
+.scard-img img { width:100%; height:100%; object-fit:cover; object-position:center 20%; }
+
+.scard-name { font-size:20px; font-weight:900; margin-bottom:3px; }
+.scard-sub  { font-size:13px; color:var(--gray); margin-bottom:16px; }
+
+.slines { border-top:1px solid var(--border); padding-top:14px; margin-bottom:14px; }
+.sl { display:flex; justify-content:space-between; font-size:14px; margin-bottom:8px; }
+.sl:last-child{ margin-bottom:0; }
+.sl.total { font-weight:800; font-size:16px; border-top:1px solid var(--border); padding-top:12px; margin-top:4px; }
+
+.trust { display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
+.tpill { font-size:11px; background:var(--off); color:var(--gray); padding:4px 10px; border-radius:999px; }
+
+.how-box {
+  margin-top:16px; padding:14px 16px;
+  background:var(--off); border-radius:12px;
+  font-size:12px; color:var(--gray); line-height:1.65;
+}
+.how-box b { color:var(--text); }
+
+/* ── SUCCESS OVERLAY ──────────────────────────────── */
+.sovr {
+  display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,.55); z-index:9999;
+  align-items:center; justify-content:center;
+  padding:20px; backdrop-filter:blur(4px);
+}
+.sovr.show{ display:flex; }
+.sbox {
+  background:#fff; border-radius:24px;
+  padding:48px 36px; max-width:460px; width:100%;
+  text-align:center; position:relative;
+  animation:popIn .3s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes popIn{
+  from{ opacity:0; transform:scale(.85) translateY(20px); }
+  to  { opacity:1; transform:scale(1) translateY(0); }
+}
+.s-ico {
+  width:80px; height:80px; border-radius:50%;
+  background:#dcfce7; margin:0 auto 24px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:36px;
+}
+.s-title { font-size:26px; font-weight:900; margin-bottom:10px; }
+.s-text  { font-size:15px; color:var(--gray); line-height:1.7; margin-bottom:12px; }
+.s-num {
+  font-size:13px; background:var(--off);
+  border-radius:10px; padding:12px 16px; margin:16px 0;
+  color:var(--gray); line-height:1.6;
+}
+.s-num b { color:var(--text); font-size:15px; }
+
+/* ── MOBILE STICKY BAR ────────────────────────────── */
+.mob-sticky {
+  display:none; position:fixed; bottom:0; left:0; right:0;
+  background:#fff; border-top:1px solid var(--border);
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  z-index:500;
+}
+@media(max-width:900px){ .mob-sticky{ display:block; } }
+</style>
+</head>
+<body>
+
+<div class="promo-bar">
+  🚚 Бесплатная доставка &nbsp;<span class="sep">·</span>&nbsp;
+  <b>Гарантия 12 месяцев</b> &nbsp;<span class="sep">·</span>&nbsp;
+  Производство полного цикла на Урале
+</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="header-inner">
+      <a href="index.html" class="logo">prostohome<span class="dot">.</span></a>
+      <nav class="main-nav">
+        <a href="catalog.html">Коллекции</a>
+        <a href="catalog.html?f=premium">Премиум</a>
+        <a href="catalog.html?f=base">Базовая</a>
+        <a href="product.html">О товаре</a>
+        <a href="cart.html" class="active">Заказать</a>
+      </nav>
+      <div class="header-right">
+        <div class="header-search">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" placeholder="Поиск...">
+        </div>
+        <button class="icon-btn" onclick="location.href='cart.html'" title="Корзина">🛍️<span class="cart-dot hidden"></span></button>
+        <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu">
+  <div class="mm-top">
+    <span class="logo">prostohome<span class="dot">.</span></span>
+    <button class="mm-close">✕</button>
+  </div>
+  <nav class="mm-nav">
+    <a href="catalog.html">Все коллекции</a>
+    <a href="catalog.html?f=premium">Линейка ХОЧУ</a>
+    <a href="catalog.html?f=base">Линейка МОГУ</a>
+    <a href="product.html">О товаре / Характеристики</a>
+    <a href="cart.html">Оформить заказ</a>
+  </nav>
+  <div class="mm-cta">
+    <a href="catalog.html" class="btn btn-primary btn-full">Смотреть каталог</a>
+    <a href="cart.html" class="btn btn-outline btn-full">Оформить заказ</a>
+  </div>
+</div>
+
+<main>
+
+<!-- HERO BAR -->
+<div style="background:var(--off);padding:28px 0 24px;border-bottom:1px solid var(--border)">
+  <div class="order-wrap">
+    <nav style="display:flex;gap:8px;align-items:center;font-size:13px;color:var(--gray);margin-bottom:10px">
+      <a href="index.html" style="color:var(--gray);text-decoration:none;transition:color .15s" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--gray)'">Главная</a>
+      <span>›</span><span style="color:var(--text)">Оформить заказ</span>
+    </nav>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+      <div>
+        <h1 style="font-size:30px;font-weight:900;letter-spacing:-.5px;margin-bottom:4px">Оформить заказ</h1>
+        <p style="font-size:14px;color:var(--gray)">Заполните форму — менеджер позвонит в течение <b style="color:var(--text)">15 минут</b> и подтвердит заказ</p>
+      </div>
+      <div style="display:flex;gap:16px;font-size:13px;color:var(--gray)">
+        <span>✅ Гарантия 12 мес.</span>
+        <span>🚚 Доставка по России</span>
+        <span>↩️ Возврат 30 дней</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER FORM -->
+<section style="padding:32px 0 60px">
+  <div class="order-wrap">
+    <div class="order-grid">
+
+      <!-- ══ LEFT COLUMN ══ -->
+      <div>
+
+        <!-- STEP 1: PRODUCT -->
+        <div class="fc">
+          <div class="fc-title">Шаг 1 · Выберите товар</div>
+
+          <div class="fg">
+            <label class="flabel">Модель <em>*</em></label>
+            <select class="fselect" id="sel-model" onchange="onModelChange()">
+              <option value="">— Выберите модель —</option>
+              <option value="dominika">Доминика — стул-кресло от 7 200 ₽</option>
+              <option value="grenada">Гренада — стул-кресло с подлокотниками от 6 900 ₽</option>
+              <option value="kinder">Киндер — стул-кресло от 6 900 ₽</option>
+              <option value="vesper">Vesper — кресло премиум от 27 900 ₽</option>
+              <option value="axiom">Axiom — кресло флагман от 42 900 ₽</option>
+            </select>
+          </div>
+
+          <div class="fg" id="color-group" style="display:none">
+            <label class="flabel">Цвет / Материал <em>*</em></label>
+            <div class="cpick" id="color-options"></div>
+            <input type="hidden" id="sel-color-val">
+          </div>
+
+          <div class="fg">
+            <label class="flabel">Количество</label>
+            <div class="qty-wrap">
+              <button class="qty-btn" type="button" onclick="changeQty(-1)">−</button>
+              <input class="qty-num" type="number" id="qty" value="1" min="1" max="20" oninput="onQtyInput()">
+              <button class="qty-btn" type="button" onclick="changeQty(1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: CONTACTS -->
+        <div class="fc">
+          <div class="fc-title">Шаг 2 · Контактные данные</div>
+
+          <div class="frow">
+            <div class="fg">
+              <label class="flabel">Имя <em>*</em></label>
+              <input class="finput" type="text" id="inp-name" placeholder="Ваше имя" autocomplete="given-name">
+            </div>
+            <div class="fg">
+              <label class="flabel">Телефон <em>*</em></label>
+              <input class="finput" type="tel" id="inp-phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" oninput="fmtPhone(this)">
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="flabel">Email</label>
+            <input class="finput" type="email" id="inp-email" placeholder="для получения подтверждения" autocomplete="email">
+            <span class="fhint">Отправим чек и данные о доставке</span>
+          </div>
+        </div>
+
+        <!-- STEP 3: DELIVERY -->
+        <div class="fc">
+          <div class="fc-title">Шаг 3 · Доставка</div>
+
+          <div class="fg">
+            <label class="flabel">Город <em>*</em></label>
+            <input class="finput" type="text" id="inp-city" placeholder="Москва, Екатеринбург, Казань..." autocomplete="address-level2">
+            <span class="fhint">Доставляем по всей России. Стоимость и сроки — в звонке менеджера.</span>
+          </div>
+
+          <div class="fg">
+            <label class="flabel">Способ получения</label>
+            <div>
+              <div class="dopt on" data-val="courier" onclick="selectDelivery(this)">
+                <div class="dopt-radio"></div>
+                <div class="dopt-body">
+                  <div class="dopt-title">Курьером до двери</div>
+                  <div class="dopt-desc">Доставка на адрес — 3–7 рабочих дней</div>
+                </div>
+                <div class="dopt-price">Бесплатно</div>
+              </div>
+              <div class="dopt" data-val="pvz" onclick="selectDelivery(this)">
+                <div class="dopt-radio"></div>
+                <div class="dopt-body">
+                  <div class="dopt-title">Пункт выдачи</div>
+                  <div class="dopt-desc">Забрать самостоятельно из ПВЗ в вашем городе</div>
+                </div>
+                <div class="dopt-price">Бесплатно</div>
+              </div>
+              <div class="dopt" data-val="post" onclick="selectDelivery(this)">
+                <div class="dopt-radio"></div>
+                <div class="dopt-body">
+                  <div class="dopt-title">Почта России</div>
+                  <div class="dopt-desc">Для отдалённых регионов — 7–14 дней</div>
+                </div>
+                <div class="dopt-price">от 350 ₽</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="flabel">Комментарий</label>
+            <textarea class="ftextarea" id="inp-comment" placeholder="Пожелания по цвету, срокам, нужен ли подъём на этаж..."></textarea>
+          </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <button class="submit-btn" id="submit-btn" type="button" onclick="doSubmit()">
+          <span>Оформить заказ</span>
+          <span id="btn-price" style="opacity:.75;font-size:15px">—</span>
+        </button>
+        <p style="text-align:center;font-size:12px;color:var(--gray);margin-top:10px;line-height:1.6">
+          Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.<br>
+          Оплата производится после подтверждения заказа менеджером.
+        </p>
+
+      </div>
+
+      <!-- ══ RIGHT COLUMN: SUMMARY ══ -->
+      <div>
+        <div class="scard">
+
+          <div class="scard-img" id="scard-img">
+            <div id="img-ph" style="text-align:center">
+              <div style="font-size:52px;margin-bottom:8px">🪑</div>
+              <div style="font-size:13px;color:var(--gray)">Выберите товар</div>
+            </div>
+            <img id="scard-photo" src="" alt="" style="display:none">
+          </div>
+
+          <div class="scard-name" id="s-name">—</div>
+          <div class="scard-sub"  id="s-sub">Выберите модель слева</div>
+
+          <div class="slines">
+            <div class="sl"><span>Модель</span><span id="s-model-price">—</span></div>
+            <div class="sl"><span>Количество</span><span id="s-qty">1 шт.</span></div>
+            <div class="sl"><span>Цвет</span><span id="s-color" style="color:var(--gray)">не выбран</span></div>
+            <div class="sl"><span>Доставка</span><span style="color:#16a34a" id="s-delivery">Бесплатно</span></div>
+            <div class="sl total"><span>Итого</span><span id="s-total">—</span></div>
+          </div>
+
+          <div class="trust">
+            <div class="tpill">✅ Гарантия 12 мес.</div>
+            <div class="tpill">🚚 Доставка по РФ</div>
+            <div class="tpill">↩️ Возврат 30 дней</div>
+            <div class="tpill">📞 Звонок за 15 мин.</div>
+            <div class="tpill">⭐ 4.9 рейтинг</div>
+          </div>
+
+          <div class="how-box">
+            <b>Как это работает</b><br>
+            Оставляете заявку → менеджер звонит в течение 15 минут → подтверждаете детали → мы отправляем. Оплата при получении или онлайн — на ваш выбор.
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- SUCCESS OVERLAY -->
+<div class="sovr" id="sovr" onclick="closeSovr(event)">
+  <div class="sbox" onclick="event.stopPropagation()">
+    <div class="s-ico">✅</div>
+    <div class="s-title">Заказ принят!</div>
+    <div class="s-text">Спасибо! Наш менеджер позвонит вам в течение <b>15 минут</b>, чтобы подтвердить детали и способ оплаты.</div>
+    <div class="s-num">
+      Номер заказа: <b id="s-order-num">#PH-00000</b><br>
+      <span id="s-order-info" style="font-size:12px;line-height:1.6"></span>
+    </div>
+    <div class="s-text" style="font-size:13px">Если не дозвонимся — напишем в WhatsApp или Telegram по номеру, который вы указали.</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:24px">
+      <a href="catalog.html" class="btn btn-primary btn-full">Посмотреть другие модели</a>
+      <a href="index.html" class="btn btn-outline btn-full">На главную</a>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE STICKY -->
+<div class="mob-sticky">
+  <button class="submit-btn" onclick="doSubmit()" style="height:52px;font-size:16px">
+    Оформить — <span id="mob-price">выберите товар</span>
+  </button>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="f-logo">prostohome<span class="dot">.</span></div>
+        <div class="f-tagline">Мебель собственного производства на Урале. Производство полного цикла. С 2022 года.</div>
+        <div class="f-socials" style="margin-top:16px">
+          <a href="https://t.me/nikistylish" target="_blank" class="f-social" title="Telegram">✈️</a>
+          <a href="https://www.instagram.com/prostohome" target="_blank" class="f-social" title="Instagram">📸</a>
+          <a href="https://vk.com/prostohome" target="_blank" class="f-social" title="ВКонтакте">📱</a>
+        </div>
+      </div>
+      <div>
+        <div class="f-head">Коллекции</div>
+        <div class="f-links">
+          <a href="catalog.html?f=premium">Линейка ХОЧУ</a>
+          <a href="catalog.html?f=base">Линейка МОГУ</a>
+          <a href="catalog.html">Все модели</a>
+        </div>
+      </div>
+      <div>
+        <div class="f-head">Покупателям</div>
+        <div class="f-links">
+          <a href="cart.html">Оформить заказ</a>
+          <a href="product.html">Характеристики</a>
+          <a href="catalog.html">Каталог</a>
+          <a href="cart.html">Доставка и оплата</a>
+        </div>
+      </div>
+      <div>
+        <div class="f-head">Компания</div>
+        <div class="f-links">
+          <a href="index.html#about">О нас</a>
+          <a href="https://t.me/nikistylish" target="_blank">@nikistylish</a>
+          <a href="https://t.me/vkotchenko" target="_blank">@vkotchenko</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="f-copy">© 2026 prostohome. · Производство: Урал, Россия</div>
+      <div class="f-req">ООО «ПРОСТОХОМ» · ОГРН: 1226600028160 · г. Екатеринбург, ул. Гагарина, стр. 8</div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast"></div>
+<script src="script.js"></script>
+<script>
+// ═══════════════════════════════════════════════
+//  PRODUCT DATA
+// ═══════════════════════════════════════════════
+const PRODUCTS = {
+  dominika: {
+    name:'Доминика', price:7200,
+    sub:'Стул-кресло · Велюр / Букле / Экокожа · Линейка МОГУ',
+    img:'img_dominika_studio.jpg',
+    colors:[
+      {id:'white-boucle', label:'Белый Букле',      hex:'#F0EEEA', border:true},
+      {id:'gray-boucle',  label:'Серый Букле',       hex:'#C5C2BC'},
+      {id:'graphite',     label:'Графит Букле',      hex:'#5C5B5C'},
+      {id:'brown-eco',    label:'Коричневый Экокожа', hex:'#8B5A3A'},
+    ]
+  },
+  grenada: {
+    name:'Гренада', price:6900,
+    sub:'Стул-кресло с подлокотниками · Велюр / Букле · Линейка МОГУ',
+    img:'img_grenada_green.jpg',
+    colors:[
+      {id:'white',  label:'Белый',           hex:'#ffffff', border:true},
+      {id:'milk',   label:'Молочный',         hex:'#F5F4F2', border:true},
+      {id:'gray',   label:'Серый',            hex:'#888888'},
+      {id:'green',  label:'Зелёный',          hex:'#5A7A6A'},
+      {id:'pink',   label:'Розовый жемчуг',   hex:'#C9A09A'},
+    ]
+  },
+  kinder: {
+    name:'Киндер', price:6900,
+    sub:'Стул-кресло · Текстурный велюр · Линейка МОГУ',
+    img:'img_kinder_cream.jpg',
+    colors:[
+      {id:'milk', label:'Молочный', hex:'#F5F4F2', border:true},
+      {id:'pink', label:'Розовый',  hex:'#F4B8C0'},
+    ]
+  },
+  vesper: {
+    name:'Vesper', price:27900,
+    sub:'Кресло с подлокотниками · Велюр · Линейка ХОЧУ',
+    img:'img_vesper_lifestyle.jpg',
+    colors:[
+      {id:'sage',  label:'Шалфей',  hex:'#7A9A8A'},
+      {id:'gray',  label:'Серый',   hex:'#888888'},
+      {id:'navy',  label:'Синий',   hex:'#3A5A7A'},
+      {id:'beige', label:'Бежевый', hex:'#D4C9B8'},
+    ]
+  },
+  axiom: {
+    name:'Axiom', price:42900,
+    sub:'Кресло флагман · Итальянская экокожа · Линейка ХОЧУ',
+    img:'img_axiom_studio.jpg',
+    colors:[
+      {id:'black', label:'Чёрный',   hex:'#1A1A1A'},
+      {id:'cognac',label:'Коньяк',   hex:'#8B5A3A'},
+      {id:'white', label:'Молочный', hex:'#F5F5F5', border:true},
+    ]
+  }
+};
+
+let curModel = null, curColor = null, curDelivery = 'courier';
+
+// ── MODEL CHANGE ──────────────────────────────────
+function onModelChange(){
+  const key = document.getElementById('sel-model').value;
+  document.getElementById('sel-model').classList.remove('err');
+  if(!key){ curModel=null; curColor=null; resetSummary(); return; }
+  curModel = PRODUCTS[key];
+  curColor = null;
+  document.getElementById('sel-color-val').value = '';
+
+  // Build color picker
+  const cg = document.getElementById('color-group');
+  const co = document.getElementById('color-options');
+  co.innerHTML = '';
+  curModel.colors.forEach(c=>{
+    const d = document.createElement('div');
+    d.className='copt';
+    d.dataset.id = c.id;
+    d.dataset.label = c.label;
+    d.innerHTML = `<div class="cdot" style="background:${c.hex};${c.border?'border:1.5px solid #bbb;':''}"></div>${c.label}`;
+    d.onclick = ()=>{
+      document.querySelectorAll('.copt').forEach(x=>x.classList.remove('on'));
+      d.classList.add('on');
+      curColor = c.label;
+      document.getElementById('sel-color-val').value = c.id;
+      document.getElementById('s-color').textContent = c.label;
+      document.getElementById('s-color').style.color = '';
+    };
+    co.appendChild(d);
+  });
+  cg.style.display='block';
+
+  // Update summary image
+  const img = document.getElementById('scard-photo');
+  img.src = curModel.img;
+  img.style.display='block';
+  document.getElementById('img-ph').style.display='none';
+
+  document.getElementById('s-name').textContent = curModel.name;
+  document.getElementById('s-sub').textContent  = curModel.sub;
+  document.getElementById('s-color').textContent = 'не выбран';
+  document.getElementById('s-color').style.color = 'var(--gray)';
+
+  calcTotal();
+}
+
+// ── QTY ───────────────────────────────────────────
+function changeQty(d){
+  const inp=document.getElementById('qty');
+  inp.value=Math.max(1,Math.min(20,(parseInt(inp.value)||1)+d));
+  calcTotal();
+}
+function onQtyInput(){ calcTotal(); }
+
+// ── DELIVERY ──────────────────────────────────────
+function selectDelivery(el){
+  document.querySelectorAll('.dopt').forEach(x=>x.classList.remove('on'));
+  el.classList.add('on');
+  curDelivery = el.dataset.val;
+  document.getElementById('s-delivery').textContent =
+    curDelivery==='post' ? 'от 350 ₽' : 'Бесплатно';
+  calcTotal();
+}
+
+// ── CALCULATE ─────────────────────────────────────
+function calcTotal(){
+  if(!curModel){ resetSummary(); return; }
+  const qty = Math.max(1,parseInt(document.getElementById('qty').value)||1);
+  const base = curModel.price * qty;
+  const delivery = curDelivery==='post' ? 350 : 0;
+  const total = base + delivery;
+  const fmt = n=>n.toLocaleString('ru-RU');
+
+  document.getElementById('s-model-price').textContent = fmt(curModel.price)+' ₽';
+  document.getElementById('s-qty').textContent = qty+' шт.';
+  document.getElementById('s-total').textContent = fmt(total)+' ₽';
+  document.getElementById('btn-price').textContent = fmt(total)+' ₽';
+  document.getElementById('mob-price').textContent = fmt(total)+' ₽';
+}
+
+function resetSummary(){
+  ['s-model-price','s-qty','s-total'].forEach(id=>document.getElementById(id).textContent='—');
+  document.getElementById('btn-price').textContent='—';
+  document.getElementById('mob-price').textContent='выберите товар';
+  document.getElementById('s-name').textContent='—';
+  document.getElementById('s-sub').textContent='Выберите модель слева';
+  const img=document.getElementById('scard-photo');
+  img.style.display='none';
+  document.getElementById('img-ph').style.display='block';
+}
+
+// ── PHONE FORMAT ──────────────────────────────────
+function fmtPhone(inp){
+  let v=inp.value.replace(/\D/g,'');
+  if(v.startsWith('8'))v='7'+v.slice(1);
+  if(v.length>0&&!v.startsWith('7'))v='7'+v;
+  v=v.slice(0,11);
+  let f='';
+  if(v.length>0) f='+'+v[0];
+  if(v.length>1) f+=' ('+v.slice(1,4);
+  if(v.length>4) f+=') '+v.slice(4,7);
+  if(v.length>7) f+='-'+v.slice(7,9);
+  if(v.length>9) f+='-'+v.slice(9,11);
+  inp.value=f;
+}
+
+// ── SUBMIT ────────────────────────────────────────
+function doSubmit(){
+  const required=[
+    {id:'sel-model', check:v=>v!==''},
+    {id:'inp-name',  check:v=>v.trim().length>1},
+    {id:'inp-phone', check:v=>v.replace(/\D/g,'').length>=11},
+    {id:'inp-city',  check:v=>v.trim().length>1},
+  ];
+  let ok=true;
+  required.forEach(r=>{
+    const el=document.getElementById(r.id);
+    const valid=r.check(el.value);
+    el.classList.toggle('err',!valid);
+    if(!valid&&ok){ el.focus(); ok=false; }
+  });
+  if(!ok) return;
+
+  // Color check
+  if(curModel && !curColor){
+    document.getElementById('color-group').scrollIntoView({behavior:'smooth',block:'center'});
+    const opts=document.querySelectorAll('.copt');
+    opts.forEach(o=>{o.style.borderColor='#e53e3e';});
+    setTimeout(()=>opts.forEach(o=>{o.style.borderColor='';}),2000);
+    return;
+  }
+
+  // Generate order
+  const name   = document.getElementById('inp-name').value.trim();
+  const phone  = document.getElementById('inp-phone').value;
+  const qty    = document.getElementById('qty').value;
+  const model  = curModel ? curModel.name : '';
+  const color  = curColor || '—';
+  const city   = document.getElementById('inp-city').value;
+  const total  = curModel ? (curModel.price*parseInt(qty)).toLocaleString('ru-RU') : '—';
+  const num    = '#PH-'+String(Math.floor(Math.random()*90000)+10000);
+
+  document.getElementById('s-order-num').textContent = num;
+  document.getElementById('s-order-info').innerHTML =
+    `${model} · ${color} · ${qty} шт.<br>${city} · ${total} ₽<br>${name} · ${phone}`;
+
+  document.getElementById('sovr').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+
+function closeSovr(e){
+  if(e.target===document.getElementById('sovr')){
+    document.getElementById('sovr').classList.remove('show');
+    document.body.style.overflow='';
+  }
+}
+
+// ── URL PARAM PRE-SELECT ──────────────────────
+(function(){
+  const m = new URLSearchParams(location.search).get('model');
+  if(m && document.querySelector(`option[value="${m}"]`)){
+    const sel = document.getElementById('sel-model');
+    sel.value = m;
+    onModelChange();
+  }
+})();
+</script>
+</body>
+</html>
