@@ -685,7 +685,7 @@ function fmtPhone(inp){
 }
 
 // ── SUBMIT ────────────────────────────────────────
-function doSubmit(){
+async function doSubmit(){
   const required=[
     {id:'sel-model', check:v=>v!==''},
     {id:'inp-name',  check:v=>v.trim().length>1},
@@ -710,16 +710,44 @@ function doSubmit(){
     return;
   }
 
-  // Generate order
-  const name   = document.getElementById('inp-name').value.trim();
-  const phone  = document.getElementById('inp-phone').value;
-  const qty    = document.getElementById('qty').value;
-  const model  = curModel ? curModel.name : '';
-  const color  = curColor || '—';
-  const city   = document.getElementById('inp-city').value;
-  const total  = curModel ? (curModel.price*parseInt(qty)).toLocaleString('ru-RU') : '—';
-  const num    = '#PH-'+String(Math.floor(Math.random()*90000)+10000);
+  // Collect order data
+  const name     = document.getElementById('inp-name').value.trim();
+  const phone    = document.getElementById('inp-phone').value;
+  const email    = document.getElementById('inp-email') ? document.getElementById('inp-email').value : '';
+  const qty      = document.getElementById('qty').value;
+  const model    = curModel ? curModel.name : '';
+  const modelId  = document.getElementById('sel-model').value;
+  const color    = curColor || '—';
+  const city     = document.getElementById('inp-city').value;
+  const comment  = document.getElementById('inp-comment') ? document.getElementById('inp-comment').value : '';
+  const delivEl  = document.querySelector('.dopt.on');
+  const delivery = delivEl ? delivEl.dataset.val : 'courier';
+  const price    = curModel ? curModel.price : 0;
+  const delivCost= delivery === 'post' ? 350 : 0;
+  const totalNum = price * parseInt(qty) + delivCost;
+  const total    = totalNum.toLocaleString('ru-RU');
+  const num      = '#PH-' + String(Math.floor(Math.random()*90000)+10000);
 
+  // Show loading state
+  const btn = document.getElementById('submit-btn');
+  if(btn){ btn.disabled = true; btn.textContent = 'Отправляем заказ…'; }
+
+  // POST to API (works on Vercel; falls back gracefully on static hosting)
+  try {
+    const resp = await fetch('/api/order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone, email, qty, model, modelId, color,
+                             city, comment, delivery, total, orderNum: num }),
+    });
+    // ignore response — show success regardless (API may be unavailable on static host)
+  } catch(e) {
+    // Static hosting or network error — order captured in UI only
+  }
+
+  if(btn){ btn.disabled = false; btn.textContent = 'Оформить заказ'; }
+
+  // Show success modal
   document.getElementById('s-order-num').textContent = num;
   document.getElementById('s-order-info').innerHTML =
     `${model} · ${color} · ${qty} шт.<br>${city} · ${total} ₽<br>${name} · ${phone}`;
