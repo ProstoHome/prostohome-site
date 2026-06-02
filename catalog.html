@@ -9,68 +9,64 @@
 </head>
 <body>
 
-<!-- PROMO BAR -->
 <div class="promo-bar">
   🚚 Бесплатная доставка &nbsp;<span class="sep">·</span>&nbsp;
   <b>Гарантия 12 месяцев</b> &nbsp;<span class="sep">·</span>&nbsp;
   Производство полного цикла на Урале
 </div>
 
-<!-- HEADER -->
-<header class="site-header">
+<header class="site-header" id="site-header">
   <div class="wrap">
     <div class="header-inner">
       <a href="index.html" class="logo">prostohome<span class="dot">.</span></a>
       <nav class="main-nav">
         <a href="catalog.html" class="active">Коллекции</a>
-        <a href="catalog.html?f=hochu">Премиум</a>
-        <a href="catalog.html?f=mogu">Базовая</a>
+        <a href="catalog.html?f=hochu">Линейка ХОЧУ</a>
+        <a href="catalog.html?f=mogu">Линейка МОГУ</a>
         <a href="product.html">О товаре</a>
         <a href="cart.html">Заказать</a>
       </nav>
       <div class="header-right">
-        <div class="header-search">
-          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <div class="h-search-wrap">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
           <input type="text" placeholder="Поиск..." id="searchInp">
         </div>
-        <button class="icon-btn" onclick="location.href='cart.html'" title="Оформить заказ">🛍️</button>
-        <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+        <a href="cart.html" class="h-icon">🛍️</a>
+        <button class="burger" id="burgerBtn"><span></span><span></span><span></span></button>
       </div>
     </div>
   </div>
 </header>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu">
+<div class="mobile-menu" id="mobileMenu">
   <div class="mm-top">
     <span class="logo">prostohome<span class="dot">.</span></span>
-    <button class="mm-close" aria-label="Закрыть">✕</button>
+    <button class="mm-close" id="mmClose">✕</button>
   </div>
   <nav class="mm-nav">
     <a href="catalog.html">Все коллекции</a>
     <a href="catalog.html?f=hochu">Линейка ХОЧУ</a>
     <a href="catalog.html?f=mogu">Линейка МОГУ</a>
-    <a href="product.html">О товаре / Характеристики</a>
+    <a href="product.html">О товаре</a>
     <a href="cart.html">Заказать</a>
   </nav>
   <div class="mm-cta">
-    <a href="catalog.html" class="btn btn-primary btn-full">Смотреть каталог</a>
-    <a href="cart.html" class="btn btn-outline btn-full">Оформить заказ</a>
+    <a href="cart.html" class="btn btn-primary btn-full btn-lg">Оформить заказ</a>
   </div>
 </div>
 
 <main>
 
-<!-- CATALOG HERO -->
-<div class="cat-hero">
+<!-- CAT HERO -->
+<div class="cat-page-hero">
   <div class="wrap">
-    <nav style="font-size:13px;color:var(--gray);margin-bottom:16px">
-      <a href="index.html" style="color:var(--gray);text-decoration:none">Главная</a>
-      <span style="margin:0 6px">›</span>
+    <nav class="cat-breadcrumb">
+      <a href="index.html">Главная</a>
+      <span>›</span>
       <span id="breadcrumb">Каталог</span>
     </nav>
-    <h1 class="cat-hero-title" id="catTitle">Все коллекции</h1>
-    <p style="color:var(--gray);font-size:16px;max-width:520px">Стулья и кресла собственного производства. 5 моделей — от 6 900 ₽ до 42 900 ₽.</p>
+    <h1 class="cat-page-title" id="catTitle">Все коллекции</h1>
+    <p class="cat-page-sub">Стулья и кресла собственного производства. 5 моделей — от 6 900 ₽ до 42 900 ₽.</p>
     <div class="cat-filters">
       <button class="cat-filter" data-filter="all">Все (5)</button>
       <button class="cat-filter" data-filter="hochu">🏆 Линейка ХОЧУ — Премиум</button>
@@ -79,181 +75,174 @@
   </div>
 </div>
 
-<!-- CATALOG GRID -->
-<section class="section">
+<!-- GRID -->
+<section class="cat-grid-section">
   <div class="wrap">
+    <div class="cat-count" id="catCount">5 моделей</div>
 
-    <div class="cat-grid" id="catGrid">
+    <div class="prod-grid catalog-mode" id="catGrid">
 
       <!-- Доминика -->
-      <div class="pcard fade-up" data-cat="mogu">
+      <div class="pcard fade-up" data-cat="mogu" onclick="location.href='product.html?model=dominika'">
         <div class="pcard-img">
-          <img class="pcard-photo" src="img_dominika_studio.jpg" alt="Доминика — Букле Белый" loading="lazy" style="object-position:center 20%">
-          <span class="badge-aaa">Хит продаж</span>
-          <button class="pcard-wish">🤍</button>
+          <img src="img_dominika_studio.jpg" alt="Доминика" loading="lazy">
+          <span class="pcard-badge badge-hot">Хит</span>
+          <div class="pcard-swatches">
+            <div class="swatch" style="background:#F0EEEA;border-color:#ddd" title="Белый Букле"></div>
+            <div class="swatch" style="background:#C5C2BC" title="Серый Букле"></div>
+            <div class="swatch" style="background:#5C5B5C" title="Графит"></div>
+            <div class="swatch" style="background:#8B5A3A" title="Коричневый"></div>
+          </div>
         </div>
         <div class="pcard-body">
           <div class="pcard-tier">Линейка МОГУ · Стул-кресло</div>
+          <div class="stock-chip">Осталось 7 шт.</div>
           <div class="pcard-name">Доминика</div>
           <div class="pcard-sub">Букле / Велюр / Экокожа · 4 цвета</div>
-          <div class="pcard-colors">
-            <div class="csw on aaa-color" style="background:#F0EEEA;border:1px solid #ddd" title="Белый Букле"></div>
-            <div class="csw aaa-color" style="background:#C5C2BC" title="Серый Букле"></div>
-            <div class="csw aaa-color" style="background:#5C5B5C" title="Графит Букле"></div>
-            <div class="csw aaa-color" style="background:#8B5A3A" title="Коричневый Экокожа"></div>
-          </div>
-          <div class="pcard-rating"><span class="stars-sm">★★★★★</span><span class="r-cnt">(4.9 · 12 400+)</span></div>
-          <div class="stock-chip">Осталось 7 шт.</div>
+          <div class="rating-row"><span class="stars">★★★★★</span><span class="rating-count">4.9 · 12 400+</span></div>
           <div class="pcard-price"><span class="price-from">от</span><span class="price-now">7 200 ₽</span></div>
         </div>
         <div class="pcard-foot">
-          <a href="cart.html?model=dominika" class="btn btn-primary btn-full btn-sm">В корзину</a>
-          <a href="product.html?model=dominika" class="btn btn-outline btn-full btn-sm">Подробнее</a>
+          <a href="cart.html?model=dominika" class="btn btn-primary btn-full btn-sm" onclick="event.stopPropagation()">В корзину</a>
+          <a href="product.html?model=dominika" class="btn btn-outline btn-sm" onclick="event.stopPropagation()">Детали</a>
         </div>
       </div>
 
       <!-- Гренада -->
-      <div class="pcard fade-up" data-cat="mogu">
+      <div class="pcard fade-up" data-cat="mogu" onclick="location.href='product.html?model=grenada'">
         <div class="pcard-img">
-          <img class="pcard-photo" src="img_grenada_lifestyle.jpg" alt="Гренада — Серый Велюр" loading="lazy" style="object-position:center 25%">
-          <span class="badge-aaa" style="background:#16a34a">6 200+ отзывов</span>
-          <button class="pcard-wish">🤍</button>
+          <img src="img_grenada_lifestyle.jpg" alt="Гренада" loading="lazy">
+          <span class="pcard-badge badge-hot">Хит</span>
+          <div class="pcard-swatches">
+            <div class="swatch" style="background:#fff;border-color:#ddd" title="Белый"></div>
+            <div class="swatch" style="background:#888" title="Серый"></div>
+            <div class="swatch" style="background:#5A7A6A" title="Зелёный"></div>
+            <div class="swatch" style="background:#C9A09A" title="Розовый жемчуг"></div>
+            <div class="swatch" style="background:#F5F4F2;border-color:#ddd" title="Молочный"></div>
+          </div>
         </div>
         <div class="pcard-body">
           <div class="pcard-tier">Линейка МОГУ · Стул-кресло с подлокотниками</div>
+          <div class="stock-chip">Осталось 12 шт.</div>
           <div class="pcard-name">Гренада</div>
           <div class="pcard-sub">Велюр / Букле · 5 цветов</div>
-          <div class="pcard-colors">
-            <div class="csw on" style="background:#888" title="Серый"></div>
-            <div class="csw" style="background:#444" title="Графит"></div>
-            <div class="csw" style="background:#5A7A6A" title="Зелёный"></div>
-            <div class="csw" style="background:#C9A09A" title="Розовый жемчуг"></div>
-            <div class="csw" style="background:#fff;border:1px solid #ddd" title="Белый"></div>
-          </div>
-          <div class="pcard-rating"><span class="stars-sm">★★★★★</span><span class="r-cnt">(4.9 · 6 200+)</span></div>
-          <div class="stock-chip">Осталось 12 шт.</div>
+          <div class="rating-row"><span class="stars">★★★★★</span><span class="rating-count">4.9 · 6 200+</span></div>
           <div class="pcard-price"><span class="price-from">от</span><span class="price-now">6 900 ₽</span></div>
         </div>
         <div class="pcard-foot">
-          <a href="cart.html?model=grenada" class="btn btn-primary btn-full btn-sm">В корзину</a>
-          <a href="product.html?model=grenada" class="btn btn-outline btn-full btn-sm">Подробнее</a>
+          <a href="cart.html?model=grenada" class="btn btn-primary btn-full btn-sm" onclick="event.stopPropagation()">В корзину</a>
+          <a href="product.html?model=grenada" class="btn btn-outline btn-sm" onclick="event.stopPropagation()">Детали</a>
         </div>
       </div>
 
       <!-- Киндер -->
-      <div class="pcard fade-up" data-cat="mogu">
+      <div class="pcard fade-up" data-cat="mogu" onclick="location.href='product.html?model=kinder'">
         <div class="pcard-img">
-          <img class="pcard-photo" src="img_kinder_cream.jpg" alt="Киндер — Молочный велюр" loading="lazy" style="object-position:center 15%">
-          <span class="pcard-badge badge-new">NEW</span>
-          <button class="pcard-wish">🤍</button>
+          <img src="img_kinder_cream.jpg" alt="Киндер" loading="lazy">
+          <span class="pcard-badge badge-new">New</span>
+          <div class="pcard-swatches">
+            <div class="swatch" style="background:#D4D0C6" title="Молочный"></div>
+            <div class="swatch" style="background:#F4B8C0" title="Розовый"></div>
+          </div>
         </div>
         <div class="pcard-body">
           <div class="pcard-tier">Линейка МОГУ · Стул-кресло</div>
           <div class="pcard-name">Киндер</div>
           <div class="pcard-sub">Велюр текстурный · 2 цвета</div>
-          <div class="pcard-colors">
-            <div class="csw on" style="background:#D4D0C6;box-shadow:0 0 0 1px rgba(0,0,0,.12)" title="Молочный"></div>
-            <div class="csw" style="background:#F4B8C0" title="Розовый"></div>
-          </div>
-          <div class="pcard-rating"><span class="stars-sm">★★★★★</span><span class="r-cnt">(4.9 · 3 100+)</span></div>
+          <div class="rating-row"><span class="stars">★★★★★</span><span class="rating-count">4.9 · 3 100+</span></div>
           <div class="pcard-price"><span class="price-from">от</span><span class="price-now">6 900 ₽</span></div>
         </div>
         <div class="pcard-foot">
-          <a href="cart.html?model=kinder" class="btn btn-primary btn-full btn-sm">В корзину</a>
-          <a href="product.html?model=kinder" class="btn btn-outline btn-full btn-sm">Подробнее</a>
+          <a href="cart.html?model=kinder" class="btn btn-primary btn-full btn-sm" onclick="event.stopPropagation()">В корзину</a>
+          <a href="product.html?model=kinder" class="btn btn-outline btn-sm" onclick="event.stopPropagation()">Детали</a>
         </div>
       </div>
 
       <!-- Vesper -->
-      <div class="pcard fade-up" data-cat="hochu">
+      <div class="pcard fade-up" data-cat="hochu" onclick="location.href='product.html?model=vesper'">
         <div class="pcard-img">
-          <img class="pcard-photo" src="img_vesper_lifestyle.jpg" alt="Vesper — Велюр шалфей" loading="lazy" style="object-position:center 30%">
-          <span class="pcard-badge badge-premium">ПРЕМИУМ</span>
-          <button class="pcard-wish">🤍</button>
+          <img src="img_vesper_lifestyle.jpg" alt="Vesper" loading="lazy">
+          <span class="pcard-badge badge-premium">Премиум</span>
+          <div class="pcard-swatches">
+            <div class="swatch" style="background:#8A9A8A" title="Шалфей"></div>
+            <div class="swatch" style="background:#888" title="Серый"></div>
+            <div class="swatch" style="background:#3A5A7A" title="Синий"></div>
+            <div class="swatch" style="background:#D4C9B8" title="Бежевый"></div>
+          </div>
         </div>
         <div class="pcard-body">
           <div class="pcard-tier">Линейка ХОЧУ · Кресло с подлокотниками</div>
           <div class="pcard-name">Vesper</div>
           <div class="pcard-sub">Велюр премиального качества · 4 цвета</div>
-          <div class="pcard-colors">
-            <div class="csw on" style="background:#8A9A8A" title="Шалфей"></div>
-            <div class="csw" style="background:#5A7A6A" title="Зелёный"></div>
-            <div class="csw" style="background:#888" title="Серый"></div>
-            <div class="csw" style="background:#1a1a1a" title="Антрацит"></div>
-          </div>
-          <div class="pcard-rating"><span class="stars-sm">★★★★★</span><span class="r-cnt">(4.9 · 987)</span></div>
+          <div class="rating-row"><span class="stars">★★★★★</span><span class="rating-count">4.9 · 987</span></div>
           <div class="pcard-price"><span class="price-from">от</span><span class="price-now">27 900 ₽</span></div>
         </div>
         <div class="pcard-foot">
-          <a href="cart.html?model=vesper" class="btn btn-primary btn-full btn-sm">В корзину</a>
-          <a href="product.html?model=vesper" class="btn btn-outline btn-full btn-sm">Подробнее</a>
+          <a href="cart.html?model=vesper" class="btn btn-primary btn-full btn-sm" onclick="event.stopPropagation()">В корзину</a>
+          <a href="product.html?model=vesper" class="btn btn-outline btn-sm" onclick="event.stopPropagation()">Детали</a>
         </div>
       </div>
 
       <!-- Axiom -->
-      <div class="pcard fade-up" data-cat="hochu">
+      <div class="pcard fade-up" data-cat="hochu" onclick="location.href='product.html?model=axiom'">
         <div class="pcard-img">
-          <img class="pcard-photo" src="img_axiom_studio.jpg" alt="Axiom — Итальянская экокожа" loading="lazy" style="object-position:center 25%">
-          <span class="pcard-badge badge-premium">ПРЕМИУМ</span>
-          <button class="pcard-wish">🤍</button>
+          <img src="img_axiom_studio.jpg" alt="Axiom" loading="lazy">
+          <span class="pcard-badge badge-premium">Премиум</span>
+          <div class="pcard-swatches">
+            <div class="swatch" style="background:#1a1a1a" title="Чёрный"></div>
+            <div class="swatch" style="background:#8B5A3A" title="Коньяк"></div>
+            <div class="swatch" style="background:#F5F5F5;border-color:#ddd" title="Молочный"></div>
+          </div>
         </div>
         <div class="pcard-body">
-          <div class="pcard-tier">Линейка ХОЧУ · Кресло — флагман</div>
+          <div class="pcard-tier">Линейка ХОЧУ · Флагман</div>
           <div class="pcard-name">Axiom</div>
           <div class="pcard-sub">Итальянская экокожа · 3 цвета</div>
-          <div class="pcard-colors">
-            <div class="csw on" style="background:#1a1a1a" title="Чёрный"></div>
-            <div class="csw" style="background:#8B5A3A" title="Коньяк"></div>
-            <div class="csw" style="background:#888" title="Серый"></div>
-          </div>
-          <div class="pcard-rating"><span class="stars-sm">★★★★★</span><span class="r-cnt">(4.9 · 1 240)</span></div>
+          <div class="rating-row"><span class="stars">★★★★★</span><span class="rating-count">4.9 · 1 240</span></div>
           <div class="pcard-price"><span class="price-from">от</span><span class="price-now">42 900 ₽</span></div>
         </div>
         <div class="pcard-foot">
-          <a href="cart.html?model=axiom" class="btn btn-primary btn-full btn-sm">В корзину</a>
-          <a href="product.html?model=axiom" class="btn btn-outline btn-full btn-sm">Подробнее</a>
+          <a href="cart.html?model=axiom" class="btn btn-primary btn-full btn-sm" onclick="event.stopPropagation()">В корзину</a>
+          <a href="product.html?model=axiom" class="btn btn-outline btn-sm" onclick="event.stopPropagation()">Детали</a>
         </div>
       </div>
 
     </div>
 
     <!-- Empty state -->
-    <div id="emptyState" style="display:none;text-align:center;padding:80px 0;color:var(--gray)">
+    <div id="emptyState" style="display:none;text-align:center;padding:80px 0;color:var(--muted)">
       <div style="font-size:48px;margin-bottom:16px">🔍</div>
-      <div style="font-size:18px;font-weight:700;margin-bottom:8px">Ничего не найдено</div>
-      <div>Попробуйте другой запрос или посмотрите все модели</div>
-      <button class="btn btn-primary" style="margin-top:20px" onclick="applyFilter('all')">Все модели</button>
+      <div style="font-size:20px;font-weight:800;margin-bottom:8px;color:var(--ink)">Ничего не найдено</div>
+      <div style="margin-bottom:24px">Попробуйте другой запрос</div>
+      <button class="btn btn-primary" onclick="applyFilter('all')">Все модели</button>
     </div>
 
   </div>
 </section>
 
-<!-- CTA BOTTOM -->
-<section class="section-dark section" style="text-align:center">
-  <div class="wrap" style="max-width:600px;margin:0 auto">
-    <div class="sec-label" style="justify-content:center;margin-bottom:12px;color:rgba(255,255,255,.5)">Не можете выбрать?</div>
-    <h2 class="sec-title" style="color:#fff;margin-bottom:16px">Поможем с выбором за 15 минут</h2>
-    <p style="color:rgba(255,255,255,.6);font-size:15px;margin-bottom:32px">Напишите нам в Telegram — расскажем про каждую модель, цвета и размеры. Отвечаем быстро.</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-      <a href="https://t.me/nikistylish" target="_blank" class="btn btn-primary btn-lg">✈️ Написать в Telegram</a>
-      <a href="cart.html" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,.25);color:#fff">Оформить заказ</a>
-    </div>
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-label" style="margin-bottom:16px;display:block">Не можете выбрать?</div>
+  <h2 class="section-title">Поможем за 15 минут</h2>
+  <p>Напишите в Telegram — расскажем про каждую модель, цвета и размеры. Отвечаем быстро.</p>
+  <div class="btn-row">
+    <a href="https://t.me/nikistylish" target="_blank" class="btn btn-primary btn-lg">✈️ Написать в Telegram</a>
+    <a href="cart.html" class="btn btn-outline btn-lg">Оформить заказ</a>
   </div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-grid">
       <div>
         <div class="f-logo">prostohome<span class="dot">.</span></div>
         <div class="f-tagline">Мебель собственного производства на Урале. С 2022 года.</div>
-        <div class="f-socials" style="margin-top:16px">
-          <a href="https://t.me/nikistylish" target="_blank" class="f-social" title="Telegram" style="text-decoration:none">✈️</a>
-          <a href="https://www.instagram.com/prostohome" target="_blank" class="f-social" title="Instagram" style="text-decoration:none">📸</a>
-          <a href="https://vk.com/prostohome" target="_blank" class="f-social" title="ВКонтакте" style="text-decoration:none">📱</a>
+        <div class="f-socials">
+          <a href="https://t.me/nikistylish" target="_blank" class="f-social">✈️</a>
+          <a href="https://www.instagram.com/prostohome" target="_blank" class="f-social">📸</a>
+          <a href="https://vk.com/prostohome" target="_blank" class="f-social">📱</a>
         </div>
       </div>
       <div>
@@ -281,70 +270,73 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="f-copy">© 2026 prostohome. · Производство: Урал, Россия</div>
-      <div class="f-req">ООО «ПРОСТОХОМ» · ОГРН: 1226600028160 · г. Екатеринбург, ул. Гагарина, стр. 8</div>
+      <div>© 2026 prostohome. · Производство: Урал, Россия</div>
+      <div>ООО «ПРОСТОХОМ» · ОГРН: 1226600028160 · Екатеринбург</div>
     </div>
   </div>
 </footer>
 
-<!-- FLOATING TELEGRAM -->
 <div class="tg-float">
-  <a href="https://t.me/nikistylish" target="_blank" class="tg-btn" title="Написать в Telegram">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-      <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" fill="rgba(255,255,255,.2)"/>
-      <path d="M17.386 7.342l-1.892 9.21c-.14.63-.508.785-.99.485l-2.758-2.07-1.328 1.31c-.148.149-.27.274-.553.274l.196-2.853 5.143-4.758c.225-.204-.048-.315-.347-.11l-6.35 4.1-2.737-.878c-.596-.19-.607-.61.124-.9l10.69-4.224c.497-.185.933.116.802.914z" fill="white"/>
-    </svg>
+  <a href="https://t.me/nikistylish" target="_blank" class="tg-btn">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" fill="rgba(255,255,255,.15)"/><path d="M17.386 7.342l-1.892 9.21c-.14.63-.508.785-.99.485l-2.758-2.07-1.328 1.31c-.148.149-.27.274-.553.274l.196-2.853 5.143-4.758c.225-.204-.048-.315-.347-.11l-6.35 4.1-2.737-.878c-.596-.19-.607-.61.124-.9l10.69-4.224c.497-.185.933.116.802.914z" fill="white"/></svg>
     <span class="tg-label">Написать нам</span>
   </a>
 </div>
-
-<div class="toast"></div>
-
+<div class="toast" id="toast"></div>
 <script src="script.js"></script>
 <script>
+window.addEventListener('scroll', () => {
+  document.getElementById('site-header').classList.toggle('scrolled', window.scrollY > 10);
+});
+document.getElementById('burgerBtn').onclick = () => document.getElementById('mobileMenu').classList.add('open');
+document.getElementById('mmClose').onclick   = () => document.getElementById('mobileMenu').classList.remove('open');
+
 function applyFilter(f) {
   var cards = document.querySelectorAll('#catGrid .pcard');
-  var q = document.getElementById('searchInp').value.trim().toLowerCase();
+  var q = (document.getElementById('searchInp').value || '').trim().toLowerCase();
   var shown = 0;
   cards.forEach(function(c) {
-    var catMatch = (f === 'all') || (c.dataset.cat === f);
-    var textMatch = !q || c.innerText.toLowerCase().includes(q);
-    if(catMatch && textMatch) { c.classList.remove('cat-item-hidden'); shown++; }
-    else { c.classList.add('cat-item-hidden'); }
+    var catOk  = f === 'all' || c.dataset.cat === f;
+    var textOk = !q || c.innerText.toLowerCase().includes(q);
+    var show   = catOk && textOk;
+    c.classList.toggle('cat-item-hidden', !show);
+    if(show) shown++;
   });
   document.getElementById('emptyState').style.display = shown ? 'none' : 'block';
-  document.querySelectorAll('.cat-filter').forEach(function(btn){
+  document.getElementById('catCount').textContent = shown + ' ' + (shown === 1 ? 'модель' : shown < 5 ? 'модели' : 'моделей');
+  document.querySelectorAll('.cat-filter').forEach(function(btn) {
     btn.classList.toggle('on', btn.dataset.filter === f);
   });
-  var titles = {all:'Все коллекции', hochu:'Линейка ХОЧУ — Премиум', mogu:'Линейка МОГУ — Базовая'};
+  var titles = { all: 'Все коллекции', hochu: 'Линейка ХОЧУ — Премиум', mogu: 'Линейка МОГУ — Базовая' };
   document.getElementById('catTitle').textContent = titles[f] || 'Все коллекции';
-  document.getElementById('breadcrumb').textContent = titles[f] ? 'Каталог › ' + titles[f] : 'Каталог';
-  history.replaceState(null,'', '?f=' + f);
+  document.getElementById('breadcrumb').textContent = f === 'all' ? 'Каталог' : 'Каталог › ' + titles[f];
+  history.replaceState(null, '', '?f=' + f);
 }
 
-(function(){
-  var params = new URLSearchParams(location.search);
-  var f = params.get('f') || 'all';
+(function() {
+  var p = new URLSearchParams(location.search);
+  var f = p.get('f') || 'all';
   if(f === 'premium') f = 'hochu';
-  if(f === 'base') f = 'mogu';
+  if(f === 'base')    f = 'mogu';
   if(!['all','hochu','mogu'].includes(f)) f = 'all';
   applyFilter(f);
 
-  document.querySelectorAll('.cat-filter').forEach(function(btn){
-    btn.addEventListener('click', function(){ applyFilter(btn.dataset.filter); });
+  document.querySelectorAll('.cat-filter').forEach(function(btn) {
+    btn.addEventListener('click', function() { applyFilter(btn.dataset.filter); });
   });
 
   var inp = document.getElementById('searchInp');
-  var qParam = params.get('q') || '';
-  if(qParam) { inp.value = qParam; applyFilter(f); }
-  inp.addEventListener('input', function(){ applyFilter(new URLSearchParams(location.search).get('f') || 'all'); });
-  inp.addEventListener('keydown', function(e){ if(e.key==='Enter') applyFilter(new URLSearchParams(location.search).get('f') || 'all'); });
+  var qp = p.get('q') || '';
+  if(qp) inp.value = qp;
+  inp.addEventListener('input', function() {
+    applyFilter(new URLSearchParams(location.search).get('f') || 'all');
+  });
 })();
 
-var obs = new IntersectionObserver(function(entries){
-  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('vis'); });
-},{threshold:.08});
-document.querySelectorAll('.fade-up').forEach(function(el){ obs.observe(el); });
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if(e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: .05 });
+document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); });
 </script>
 </body>
 </html>
