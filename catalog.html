@@ -335,8 +335,12 @@ function applyFilter(f) {
 
 var obs = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) { if(e.isIntersecting) e.target.classList.add('vis'); });
-}, { threshold: .05 });
+}, { threshold: .05, rootMargin: '0px 0px -10px 0px' });
 document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); });
+// Fallback: ensure cards visible after short delay (covers headless browsers)
+setTimeout(function() {
+  document.querySelectorAll('.fade-up').forEach(function(el) { el.classList.add('vis'); });
+}, 150);
 </script>
 </body>
 </html>

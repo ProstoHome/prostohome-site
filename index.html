@@ -356,6 +356,9 @@ var obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
 }, { threshold: .06 });
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+setTimeout(() => {
+  document.querySelectorAll('.fade-up').forEach(el => el.classList.add('vis'));
+}, 150);
 </script>
 </body>
 </html>
