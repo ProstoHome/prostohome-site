@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>О товаре — prostohome.</title>
+<meta name="description" content="Характеристики, размеры, материалы стульев и кресел prostohome. Собственное производство на Урале.">
+<link rel="stylesheet" href="style.css">
+<style>
+.prod-model-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px; }
+.prod-model-tab {
+  padding:8px 18px; border-radius:999px; border:1.5px solid var(--border);
+  background:#fff; font-size:13px; font-weight:600; cursor:pointer;
+  transition:all .15s; color:var(--text); font-family:inherit;
+}
+.prod-model-tab:hover { border-color:var(--primary); }
+.prod-model-tab.on { background:var(--primary); border-color:var(--primary); color:#fff; }
+.info-row { display:flex; gap:12px; align-items:flex-start; padding:14px 0; border-bottom:1px solid var(--border); }
+.info-row:last-child { border-bottom:none; }
+.info-ico { font-size:20px; flex-shrink:0; margin-top:2px; }
+.info-label { font-size:12px; color:var(--gray); font-weight:600; text-transform:uppercase; letter-spacing:.06em; margin-bottom:3px; }
+.info-val { font-size:15px; font-weight:700; }
+.info-desc { font-size:13px; color:var(--gray); margin-top:3px; line-height:1.5; }
+.dim-visual {
+  background:var(--off); border-radius:20px; padding:32px;
+  display:flex; align-items:center; justify-content:center;
+  min-height:280px; position:relative; margin-bottom:24px;
+}
+.dim-chair {
+  width:160px; height:200px; position:relative; flex-shrink:0;
+}
+.dim-ann { position:absolute; font-size:12px; font-weight:700; color:var(--primary); white-space:nowrap; }
+.dim-ann::before { content:''; position:absolute; background:var(--primary); }
+.dim-line { position:absolute; background:var(--border); }
+</style>
+</head>
+<body>
+
+<!-- PROMO BAR -->
+<div class="promo-bar">
+  🚚 Бесплатная доставка &nbsp;<span class="sep">·</span>&nbsp;
+  <b>Гарантия 12 месяцев</b> &nbsp;<span class="sep">·</span>&nbsp;
+  Производство полного цикла на Урале
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="wrap">
+    <div class="header-inner">
+      <a href="index.html" class="logo">prostohome<span class="dot">.</span></a>
+      <nav class="main-nav">
+        <a href="catalog.html">Коллекции</a>
+        <a href="catalog.html?f=hochu">Премиум</a>
+        <a href="catalog.html?f=mogu">Базовая</a>
+        <a href="product.html" class="active">О товаре</a>
+        <a href="cart.html">Заказать</a>
+      </nav>
+      <div class="header-right">
+        <div class="header-search">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" placeholder="Поиск...">
+        </div>
+        <button class="icon-btn" onclick="location.href='cart.html'" title="Оформить заказ">🛍️</button>
+        <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu">
+  <div class="mm-top">
+    <span class="logo">prostohome<span class="dot">.</span></span>
+    <button class="mm-close" aria-label="Закрыть">✕</button>
+  </div>
+  <nav class="mm-nav">
+    <a href="catalog.html">Все коллекции</a>
+    <a href="catalog.html?f=hochu">Линейка ХОЧУ</a>
+    <a href="catalog.html?f=mogu">Линейка МОГУ</a>
+    <a href="product.html">О товаре / Характеристики</a>
+    <a href="cart.html">Заказать</a>
+  </nav>
+  <div class="mm-cta">
+    <a href="catalog.html" class="btn btn-primary btn-full">Смотреть каталог</a>
+    <a href="cart.html" class="btn btn-outline btn-full">Оформить заказ</a>
+  </div>
+</div>
+
+<main>
+
+<section class="section" style="padding-top:32px">
+  <div class="wrap">
+
+    <!-- Breadcrumb -->
+    <nav style="font-size:13px;color:var(--gray);margin-bottom:24px">
+      <a href="index.html" style="color:var(--gray);text-decoration:none">Главная</a>
+      <span style="margin:0 6px">›</span>
+      <a href="catalog.html" style="color:var(--gray);text-decoration:none">Каталог</a>
+      <span style="margin:0 6px">›</span>
+      <span id="bc-model">О товаре</span>
+    </nav>
+
+    <!-- Model selector tabs -->
+    <h1 style="font-size:32px;font-weight:900;margin-bottom:8px" id="prod-title">О товаре</h1>
+    <p style="color:var(--gray);margin-bottom:24px">Выберите модель для просмотра характеристик:</p>
+    <div class="prod-model-tabs">
+      <button class="prod-model-tab" data-model="dominika">Доминика</button>
+      <button class="prod-model-tab" data-model="grenada">Гренада</button>
+      <button class="prod-model-tab" data-model="kinder">Киндер</button>
+      <button class="prod-model-tab" data-model="vesper">Vesper</button>
+      <button class="prod-model-tab" data-model="axiom">Axiom</button>
+    </div>
+
+    <!-- Product page grid -->
+    <div class="prod-page-grid">
+
+      <!-- Gallery -->
+      <div>
+        <div class="prod-gallery" id="prodGallery">
+          <img id="prodImg" src="img_dominika_studio.jpg" alt="Доминика" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">
+        </div>
+        <!-- Thumbnails -->
+        <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap" id="thumbRow">
+          <div style="width:72px;height:72px;border-radius:12px;overflow:hidden;border:2px solid var(--primary);cursor:pointer" onclick="switchImg('img_dominika_studio.jpg','center 20%')">
+            <img src="img_dominika_studio.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 20%">
+          </div>
+          <div style="width:72px;height:72px;border-radius:12px;overflow:hidden;border:2px solid var(--border);cursor:pointer" onclick="switchImg('img_dominika_leather.jpg','center top')">
+            <img src="img_dominika_leather.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+          </div>
+          <div style="width:72px;height:72px;border-radius:12px;overflow:hidden;border:2px solid var(--border);cursor:pointer" onclick="switchImg('img_boucle_macro.jpg','center 40%')">
+            <img src="img_boucle_macro.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%">
+          </div>
+        </div>
+      </div>
+
+      <!-- Info panel -->
+      <div class="prod-info-block">
+
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px">
+          <span style="font-size:28px;font-weight:900" id="prodPrice">от 7 200 ₽</span>
+          <span id="prodLine" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--primary)">Линейка МОГУ</span>
+        </div>
+        <div style="margin-bottom:20px">
+          <span class="stars-sm" style="font-size:16px">★★★★★</span>
+          <span style="font-size:13px;color:var(--gray);margin-left:8px" id="prodRating">4.9 · 12 400+ отзывов</span>
+        </div>
+
+        <!-- Color picker -->
+        <div style="margin-bottom:24px" id="colorSection">
+          <div style="font-size:13px;font-weight:600;margin-bottom:10px">Цвет: <span id="colorLabel" style="color:var(--primary)">Белый Букле</span></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap" id="colorPicker"></div>
+        </div>
+
+        <!-- CTA -->
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
+          <a id="cartBtn" href="cart.html?model=dominika" class="btn btn-primary btn-full" style="height:52px;font-size:16px;font-weight:800">В корзину →</a>
+          <a href="https://t.me/nikistylish" target="_blank" class="btn btn-outline btn-full" style="height:44px">✈️ Задать вопрос в Telegram</a>
+        </div>
+
+        <!-- Trust badges -->
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px">
+          <span style="font-size:12px;color:var(--gray)">✅ Гарантия 12 мес.</span>
+          <span style="font-size:12px;color:var(--gray)">🚚 Доставка по РФ</span>
+          <span style="font-size:12px;color:var(--gray)">↩️ Возврат 30 дней</span>
+        </div>
+
+        <!-- Tabs -->
+        <div class="prod-tabs">
+          <button class="prod-tab on" data-tab="specs">Характеристики</button>
+          <button class="prod-tab" data-tab="dims">Размеры</button>
+          <button class="prod-tab" data-tab="materials">Материалы</button>
+          <button class="prod-tab" data-tab="faq">FAQ</button>
+        </div>
+
+        <!-- SPECS TAB -->
+        <div class="prod-tab-panel on" id="tab-specs">
+          <table class="specs-table" id="specsTable">
+            <tbody id="specsTbody">
+              <tr><td>Высота от пола до сиденья</td><td>43 см</td></tr>
+              <tr><td>Высота до подлокотников</td><td>64–65 см</td></tr>
+              <tr><td>Ширина с подлокотниками</td><td>55,5 см</td></tr>
+              <tr><td>Глубина сиденья</td><td>45 см</td></tr>
+              <tr><td>Ширина сиденья</td><td>43 см</td></tr>
+              <tr><td>Высота подлокотников</td><td>17,5 см</td></tr>
+              <tr><td>Угол наклона спинки</td><td>105°</td></tr>
+              <tr><td>Максимальная нагрузка</td><td>300 кг</td></tr>
+              <tr><td>Вес стула</td><td>5 кг</td></tr>
+              <tr><td>Размер упаковки</td><td>75 × 64 × 10 см</td></tr>
+              <tr><td>Материал ножек</td><td>Сталь Ø32 мм, 1,3 мм, порошковое покрытие</td></tr>
+              <tr><td>Гарантия</td><td>12 месяцев</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- DIMS TAB -->
+        <div class="prod-tab-panel" id="tab-dims">
+          <div style="background:var(--off);border-radius:16px;padding:28px;margin-bottom:16px">
+            <div style="text-align:center;font-size:13px;color:var(--gray);margin-bottom:16px">Схема размеров (Доминика, Гренада, Киндер)</div>
+            <!-- Simple text diagram -->
+            <pre style="font-family:monospace;font-size:12px;line-height:1.8;color:var(--text);overflow-x:auto">
+     ←——— 55,5 см ———→
+     ┌──────────────┐   ↑
+     │   СПИНКА     │   │ 105° наклон
+     │              │   │
+   ←─┤   СИДЕНЬЕ   ├─→  │ ↑ 43 см
+     │  ←—43 см—→  │   │ │ высота сид.
+     └──────────────┘   ↓ ↓
+         ↑ ↑
+         ножки Ø32
+            </pre>
+          </div>
+          <table class="specs-table">
+            <tbody>
+              <tr><td>Общая высота</td><td>~88 см</td></tr>
+              <tr><td>Высота сиденья от пола</td><td>43 см</td></tr>
+              <tr><td>Глубина сиденья</td><td>45 см</td></tr>
+              <tr><td>Ширина сиденья</td><td>43 см</td></tr>
+              <tr><td>Ширина с подлокотниками</td><td>55,5 см</td></tr>
+              <tr><td>Задвигается под стол от</td><td>76 см</td></tr>
+              <tr><td>Наконечники на ножках</td><td>Ø20 мм, пластик (в комплекте)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- MATERIALS TAB -->
+        <div class="prod-tab-panel" id="tab-materials">
+          <div class="info-row">
+            <div class="info-ico">🧵</div>
+            <div>
+              <div class="info-label">Обивка</div>
+              <div class="info-val" id="mat-fabric">Антивандальный букле / велюр</div>
+              <div class="info-desc">Цветоустойчивая ткань — выдерживает 10 000+ моек. Антикоготь. В комплекте кислородный карандаш-пятновыводитель.</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-ico">🪵</div>
+            <div>
+              <div class="info-label">Каркас</div>
+              <div class="info-val">Фанера 15 мм</div>
+              <div class="info-desc">Берёзовая фанера мебельного класса. Обеспечивает жёсткость формы.</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-ico">💛</div>
+            <div>
+              <div class="info-label">Наполнитель</div>
+              <div class="info-val">Мебельный поролон 40 мм × 2 слоя</div>
+              <div class="info-desc">Вдвое больше поролона, чем у аналогов. Плотность HD-35. Не проседает годами.</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-ico">⚙️</div>
+            <div>
+              <div class="info-label">Ножки</div>
+              <div class="info-val">Сталь Ø32 мм, толщина 1,3 мм</div>
+              <div class="info-desc">Порошковое покрытие — 100% защита от коррозии. Чёрный цвет. Наконечники Ø20 мм включены.</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-ico">🛡️</div>
+            <div>
+              <div class="info-label">Сертификаты</div>
+              <div class="info-val">ГОСТ Р 56084-2014</div>
+              <div class="info-desc">Стулья прошли испытания по нагрузке 300 кг. Производство сертифицировано.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ TAB -->
+        <div class="prod-tab-panel" id="tab-faq">
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary><span>Задвинется ли стул под стол?</span><span class="faq-toggle">+</span></summary>
+              <div class="faq-a">Да, стул заходит под стол высотой от <b>76 см</b>. Высота подлокотников — 65 см. Для столов ниже 65 см стул не подойдёт.</div>
+            </details>
+            <details class="faq-item">
+              <summary><span>Ткань не боится когтей?</span><span class="faq-toggle">+</span></summary>
+              <div class="faq-a">Да. Велюр и букле антивандальные — не боятся когтей. <b>В комплекте идёт кислородный карандаш-пятновыводитель.</b></div>
+            </details>
+            <details class="faq-item">
+              <summary><span>Сколько стул весит, можно ли донести самому?</span><span class="faq-toggle">+</span></summary>
+              <div class="faq-a"><b>5 кг.</b> Упаковка 75×64×10 см — помещается в любой автомобиль. Вполне можно донести самому.</div>
+            </details>
+            <details class="faq-item">
+              <summary><span>Белый букле — чисто белый или молочный?</span><span class="faq-toggle">+</span></summary>
+              <div class="faq-a"><b>Тёплый белый, ближе к молочному.</b> Не холодный оптический белый — скорее кремовый оттенок.</div>
+            </details>
+            <details class="faq-item">
+              <summary><span>Нужны ли чехлы?</span><span class="faq-toggle">+</span></summary>
+              <div class="faq-a">Нет. Ткань уже антивандальная. <b>Чехлы мы не производим и не продаём</b> — в них нет необходимости.</div>
+            </details>
+            <details class="faq-item">
+              <summary><span>Есть ли накладки на ножки?</span><span class="faq-toggle">+</span></summary>
+              <div class="faq-a">Да, <b>пластиковые заглушки уже вставлены</b> в ножки. Диаметр — 20 мм.</div>
+            </details>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Comparison table -->
+    <div style="margin-top:64px">
+      <div class="sec-label" style="margin-bottom:8px">Сравнение моделей</div>
+      <h2 class="sec-title" style="margin-bottom:28px">Все 5 моделей</h2>
+      <div style="overflow-x:auto">
+        <table class="specs-table" style="min-width:700px">
+          <thead>
+            <tr style="background:var(--off)">
+              <td style="font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray)">Модель</td>
+              <td style="font-weight:700">Линейка</td>
+              <td style="font-weight:700">Тип</td>
+              <td style="font-weight:700">Цена</td>
+              <td style="font-weight:700">Цвета</td>
+              <td style="font-weight:700">Рейтинг</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Доминика</b></td>
+              <td>МОГУ</td>
+              <td>Стул-кресло</td>
+              <td>от 7 200 ₽</td>
+              <td>4 (Букле, Экокожа)</td>
+              <td>⭐ 4.9 / 12 400+</td>
+              <td><a href="cart.html?model=dominika" class="btn btn-primary btn-sm" style="white-space:nowrap">В корзину</a></td>
+            </tr>
+            <tr>
+              <td><b>Гренада</b></td>
+              <td>МОГУ</td>
+              <td>Стул с подлокотниками</td>
+              <td>от 6 900 ₽</td>
+              <td>5 (Велюр, Букле)</td>
+              <td>⭐ 4.9 / 6 200+</td>
+              <td><a href="cart.html?model=grenada" class="btn btn-primary btn-sm" style="white-space:nowrap">В корзину</a></td>
+            </tr>
+            <tr>
+              <td><b>Киндер</b></td>
+              <td>МОГУ</td>
+              <td>Стул-кресло</td>
+              <td>от 6 900 ₽</td>
+              <td>2 (Велюр текстурный)</td>
+              <td>⭐ 4.9 / 3 100+</td>
+              <td><a href="cart.html?model=kinder" class="btn btn-primary btn-sm" style="white-space:nowrap">В корзину</a></td>
+            </tr>
+            <tr>
+              <td><b>Vesper</b></td>
+              <td>ХОЧУ</td>
+              <td>Кресло с подлокотниками</td>
+              <td>от 27 900 ₽</td>
+              <td>4 (Велюр премиум)</td>
+              <td>⭐ 4.9 / 987</td>
+              <td><a href="cart.html?model=vesper" class="btn btn-primary btn-sm" style="white-space:nowrap">В корзину</a></td>
+            </tr>
+            <tr>
+              <td><b>Axiom</b></td>
+              <td>ХОЧУ</td>
+              <td>Кресло — флагман</td>
+              <td>от 42 900 ₽</td>
+              <td>3 (Итальянская экокожа)</td>
+              <td>⭐ 4.9 / 1 240</td>
+              <td><a href="cart.html?model=axiom" class="btn btn-primary btn-sm" style="white-space:nowrap">В корзину</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="f-logo">prostohome<span class="dot">.</span></div>
+        <div class="f-tagline">Мебель собственного производства на Урале. С 2022 года.</div>
+        <div class="f-socials" style="margin-top:16px">
+          <a href="https://t.me/nikistylish" target="_blank" class="f-social" title="Telegram" style="text-decoration:none">✈️</a>
+          <a href="https://www.instagram.com/prostohome" target="_blank" class="f-social" title="Instagram" style="text-decoration:none">📸</a>
+          <a href="https://vk.com/prostohome" target="_blank" class="f-social" title="ВКонтакте" style="text-decoration:none">📱</a>
+        </div>
+      </div>
+      <div>
+        <div class="f-head">Коллекции</div>
+        <div class="f-links">
+          <a href="catalog.html?f=hochu">Линейка ХОЧУ</a>
+          <a href="catalog.html?f=mogu">Линейка МОГУ</a>
+          <a href="catalog.html">Все модели</a>
+        </div>
+      </div>
+      <div>
+        <div class="f-head">Покупателям</div>
+        <div class="f-links">
+          <a href="cart.html">Оформить заказ</a>
+          <a href="product.html">Характеристики</a>
+          <a href="cart.html">Доставка и оплата</a>
+        </div>
+      </div>
+      <div>
+        <div class="f-head">Компания</div>
+        <div class="f-links">
+          <a href="index.html#about">О нас</a>
+          <a href="https://t.me/nikistylish" target="_blank">@nikistylish</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="f-copy">© 2026 prostohome. · Производство: Урал, Россия</div>
+      <div class="f-req">ООО «ПРОСТОХОМ» · ОГРН: 1226600028160 · г. Екатеринбург, ул. Гагарина, стр. 8</div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING TELEGRAM -->
+<div class="tg-float">
+  <a href="https://t.me/nikistylish" target="_blank" class="tg-btn" title="Написать в Telegram">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" fill="rgba(255,255,255,.2)"/>
+      <path d="M17.386 7.342l-1.892 9.21c-.14.63-.508.785-.99.485l-2.758-2.07-1.328 1.31c-.148.149-.27.274-.553.274l.196-2.853 5.143-4.758c.225-.204-.048-.315-.347-.11l-6.35 4.1-2.737-.878c-.596-.19-.607-.61.124-.9l10.69-4.224c.497-.185.933.116.802.914z" fill="white"/>
+    </svg>
+    <span class="tg-label">Написать нам</span>
+  </a>
+</div>
+
+<div class="toast"></div>
+
+<script src="script.js"></script>
+<script>
+var MODELS = {
+  dominika: {
+    name: 'Доминика', price: 'от 7 200 ₽', line: 'Линейка МОГУ', rating: '4.9 · 12 400+ отзывов',
+    img: 'img_dominika_studio.jpg', imgPos: 'center 20%',
+    cartLink: 'cart.html?model=dominika',
+    fabric: 'Антивандальный букле / велюр / экокожа',
+    colors: [
+      {hex:'#F0EEEA', label:'Белый Букле', border:true},
+      {hex:'#C5C2BC', label:'Серый Букле'},
+      {hex:'#5C5B5C', label:'Графит Букле'},
+      {hex:'#8B5A3A', label:'Коричневый Экокожа'}
+    ]
+  },
+  grenada: {
+    name: 'Гренада', price: 'от 6 900 ₽', line: 'Линейка МОГУ', rating: '4.9 · 6 200+ отзывов',
+    img: 'img_grenada_lifestyle.jpg', imgPos: 'center 25%',
+    cartLink: 'cart.html?model=grenada',
+    fabric: 'Антивандальный велюр / букле',
+    colors: [
+      {hex:'#888', label:'Серый'},
+      {hex:'#444', label:'Графит'},
+      {hex:'#5A7A6A', label:'Зелёный'},
+      {hex:'#C9A09A', label:'Розовый жемчуг'},
+      {hex:'#fff', label:'Белый', border:true}
+    ]
+  },
+  kinder: {
+    name: 'Киндер', price: 'от 6 900 ₽', line: 'Линейка МОГУ', rating: '4.9 · 3 100+ отзывов',
+    img: 'img_kinder_cream.jpg', imgPos: 'center 15%',
+    cartLink: 'cart.html?model=kinder',
+    fabric: 'Текстурный велюр',
+    colors: [
+      {hex:'#D4D0C6', label:'Молочный'},
+      {hex:'#F4B8C0', label:'Розовый'}
+    ]
+  },
+  vesper: {
+    name: 'Vesper', price: 'от 27 900 ₽', line: 'Линейка ХОЧУ', rating: '4.9 · 987 отзывов',
+    img: 'img_vesper_lifestyle.jpg', imgPos: 'center 30%',
+    cartLink: 'cart.html?model=vesper',
+    fabric: 'Велюр премиального качества',
+    colors: [
+      {hex:'#8A9A8A', label:'Шалфей'},
+      {hex:'#5A7A6A', label:'Зелёный'},
+      {hex:'#888', label:'Серый'},
+      {hex:'#1a1a1a', label:'Антрацит'}
+    ]
+  },
+  axiom: {
+    name: 'Axiom', price: 'от 42 900 ₽', line: 'Линейка ХОЧУ', rating: '4.9 · 1 240 отзывов',
+    img: 'img_axiom_studio.jpg', imgPos: 'center 25%',
+    cartLink: 'cart.html?model=axiom',
+    fabric: 'Итальянская экокожа',
+    colors: [
+      {hex:'#1a1a1a', label:'Чёрный'},
+      {hex:'#8B5A3A', label:'Коньяк'},
+      {hex:'#888', label:'Серый'}
+    ]
+  }
+};
+
+function switchImg(src, pos) {
+  var img = document.getElementById('prodImg');
+  img.style.objectPosition = pos;
+  img.src = src;
+}
+
+function loadModel(id) {
+  var m = MODELS[id];
+  if(!m) return;
+  document.getElementById('prod-title').textContent = m.name;
+  document.getElementById('bc-model').textContent = m.name;
+  document.getElementById('prodPrice').textContent = m.price;
+  document.getElementById('prodLine').textContent = m.line;
+  document.getElementById('prodRating').textContent = m.rating;
+  document.getElementById('cartBtn').href = m.cartLink;
+  document.getElementById('mat-fabric').textContent = m.fabric;
+
+  var img = document.getElementById('prodImg');
+  img.src = m.img;
+  img.style.objectPosition = m.imgPos;
+  img.alt = m.name;
+
+  // Color picker
+  var cp = document.getElementById('colorPicker');
+  cp.innerHTML = '';
+  m.colors.forEach(function(c, i){
+    var sw = document.createElement('div');
+    sw.style.cssText = 'width:28px;height:28px;border-radius:50%;cursor:pointer;transition:box-shadow .15s;';
+    sw.style.background = c.hex;
+    if(c.border) sw.style.border = '1px solid #ddd';
+    sw.title = c.label;
+    if(i===0) { sw.style.boxShadow = '0 0 0 2.5px var(--dark)'; document.getElementById('colorLabel').textContent = c.label; }
+    sw.addEventListener('click', function(){
+      cp.querySelectorAll('div').forEach(function(s){ s.style.boxShadow='0 0 0 1.5px var(--border)'; });
+      sw.style.boxShadow = '0 0 0 2.5px var(--dark)';
+      document.getElementById('colorLabel').textContent = c.label;
+    });
+    cp.appendChild(sw);
+  });
+
+  // Update tabs active
+  document.querySelectorAll('.prod-model-tab').forEach(function(btn){
+    btn.classList.toggle('on', btn.dataset.model === id);
+  });
+  history.replaceState(null,'','?model='+id);
+}
+
+// Init
+(function(){
+  var m = new URLSearchParams(location.search).get('model') || 'dominika';
+  if(!MODELS[m]) m = 'dominika';
+  loadModel(m);
+
+  document.querySelectorAll('.prod-model-tab').forEach(function(btn){
+    btn.addEventListener('click', function(){ loadModel(btn.dataset.model); });
+  });
+
+  // Tab panels
+  document.querySelectorAll('.prod-tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      document.querySelectorAll('.prod-tab').forEach(function(t){ t.classList.remove('on'); });
+      document.querySelectorAll('.prod-tab-panel').forEach(function(p){ p.classList.remove('on'); });
+      tab.classList.add('on');
+      document.getElementById('tab-' + tab.dataset.tab).classList.add('on');
+    });
+  });
+
+  // FAQ toggles
+  document.querySelectorAll('.faq-item summary').forEach(function(s){
+    s.addEventListener('click', function(){
+      var t = s.querySelector('.faq-toggle');
+      var open = s.parentElement.hasAttribute('open');
+      if(!open) t.textContent = '−'; else t.textContent = '+';
+    });
+  });
+})();
+
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('vis'); });
+},{threshold:.08});
+document.querySelectorAll('.fade-up').forEach(function(el){ obs.observe(el); });
+</script>
+</body>
+</html>

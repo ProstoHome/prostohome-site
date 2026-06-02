@@ -675,3 +675,104 @@ ul   { list-style: none; }
 
 /* divider */
 .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+/* ── HERO TEXT LINK (secondary CTA) ─────────────── */
+.hero-text-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border);
+  padding: 14px 4px;
+  transition: text-decoration-color var(--ease), color var(--ease);
+}
+.hero-text-link:hover {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}
+
+/* ── HERO H1 — stronger typography ──────────────── */
+.hero-h1 {
+  font-size: clamp(40px, 5.5vw, 72px) !important;
+}
+
+/* ── MOBILE IMPROVEMENTS (390px) ────────────────── */
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 32px 20px 40px;
+  }
+  .hero-h1 {
+    font-size: clamp(34px, 10vw, 48px) !important;
+    margin-bottom: 16px;
+  }
+  .hero-sub {
+    font-size: 15px;
+    margin-bottom: 28px;
+  }
+  .hero-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero-text-link { padding: 10px 0; }
+  .hero-proof {
+    gap: 20px;
+    margin-top: 24px;
+    padding-top: 20px;
+  }
+  .hero-stat-num { font-size: 20px; }
+
+  .features-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .feature-item { padding: 16px; }
+  .feature-icon { font-size: 22px; margin-bottom: 6px; }
+  .feature-name { font-size: 13px; }
+  .feature-desc { font-size: 12px; }
+
+  .prod-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .pcard-name { font-size: 13px; }
+  .pcard-price { font-size: 15px; }
+
+  .brand-strip {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .brand-img { aspect-ratio: 3/2; }
+
+  .cta-section { padding: 48px 20px; }
+  .cta-section .btn-row { flex-direction: column; gap: 10px; }
+  .cta-section .btn { width: 100%; justify-content: center; }
+}
+
+/* Footer responsive on mobile */
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 20px;
+  }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 380px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+/* ── PRODUCT GRID — mobile 2-col always ─────────── */
+@media (max-width: 480px) {
+  .catalog-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px;
+  }
+}
